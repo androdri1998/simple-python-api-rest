@@ -5,21 +5,16 @@ import json
 
 app = Flask(__name__)
 
-@app.route("/products", methods=["GET"])
-def get_product():
-  return jsonify({ 'message': 'Get a Product' })
-
-@app.route("/products", methods=["PUT"])
-def put_product():
-  return jsonify({ 'message': 'Put a Product' })
-
-@app.route("/products", methods=["DELETE"])
-def delete_product():
-  return jsonify({ 'message': 'Delete a Product' })
-
-@app.route("/products", methods=["POST"])
-def post_product():
-  return jsonify({ 'message': 'Post a new product' })
+@app.route("/products", methods=["GET", "PUT", "DELETE", "POST"])
+def req():
+  if request.method == 'GET':
+    return jsonify({ 'message': 'Get a Product' })
+  if request.method == 'PUT':
+    return jsonify({ 'message': 'Put a Product' })
+  if request.method == 'DELETE':
+    return jsonify({ 'message': 'Delete a Product' })
+  if request.method == 'POST':
+    return jsonify({ 'message': 'Post a new product' })
 
 @app.route("/products/<product_id>", methods=["GET"])
 def get_one_product(product_id):
